@@ -7,7 +7,7 @@ TARGETS = integral
 
 all : $(TARGETS)
 
-integral : integral.o random.o
+integral : integral.o random.o monte_carlo.o rect.o
 	$(LD) $(LDFLAGS) $^ -o $@
 
 %.o : %.c
