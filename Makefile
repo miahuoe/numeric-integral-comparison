@@ -3,11 +3,11 @@ LD = gcc
 ERRLVL = -Wall -Wextra -pedantic -Wimplicit-fallthrough=0
 CFLAGS = -std=c99 -g $(ERRLVL)
 LDFLAGS = -static
-TARGETS = integral
+TARGETS = rect_test
 
 all : $(TARGETS)
 
-integral : integral.o random.o monte_carlo.o rect.o
+rect_test : rect_test.o rect.o integrals.o
 	$(LD) $(LDFLAGS) $^ -o $@
 
 %.o : %.c
@@ -19,4 +19,4 @@ strip : $(TARGET)
 	--remove-section=.note.gnu.build-id --remove-section=.note.ABI-tag $^
 
 clean :
-	rm -rf *.o $(TARGETS)
+	rm -rf *.o *.csv $(TARGETS)
