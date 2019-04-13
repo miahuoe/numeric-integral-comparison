@@ -23,10 +23,12 @@ int main()
 			continue;
 		}
 		printf("%s\n", fname);
-		fprintf(f, "n,left,middle,right\n");
+		fprintf(f, "n,true,left,middle,right\n");
 		for (n = 1; n <= 100; n++) {
-			fprintf(f, "%u,%f,%f,%f\n",
+			// TODO stop when close enough?
+			fprintf(f, "%u,%f,%f,%f,%f\n",
 				n,
+				I[i].y,
 				rect_left(I[i].a, I[i].b, I[i].f, n),
 				rect_middle(I[i].a, I[i].b, I[i].f, n),
 				rect_right(I[i].a, I[i].b, I[i].f, n)
@@ -34,6 +36,5 @@ int main()
 		}
 		fclose(f);
 	}
-
 	return 0;
 }
