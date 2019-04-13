@@ -1,3 +1,20 @@
+/*
+ * An implementation of random function.
+ * Returns a random double from given range.
+ *
+ * On linux it uses random bytes from auxiliary vector.
+ * time() ticks every second, so if one runs programs faster,
+ * then one gets the same random numbers. Seeding using auxiliary
+ * vector random bytes solves this problem.
+ *
+ * Author: Michał Czarnecki <czarnecky@va.pl>
+ * Date: 2019-04-13
+ */
+
+/*
+ * TODO increase resolution. RAND_MAX is usually 2^16-1 or something like that.
+ */
+
 #include "random.h"
 
 #ifdef __linux__
@@ -5,21 +22,19 @@
 double random(double a, double b)
 {
 	static _Bool seeded = 0;
-	unsigned long max = RAND_MAX, r, rr[2], i;
+	unsigned long max = RAND_MAX, r, seed, i;
 	double R;
 	unsigned char *auxrandom;
 
 	if (!seeded) {
 		seeded = 1;
 		auxrandom = (unsigned char*)getauxval(25);
-		rr[0] = rr[1] = 0;
+		seed = 0;
 		for (i = 0; i < 8; i++) {
-			rr[0] <<= 8;
-			rr[0] |= auxrandom[i];
-			rr[1] <<= 8;
-			rr[1] |= auxrandom[8+i];
+			seed <<= 8;
+			seed |= auxrandom[i];
 		}
-		srand(time(0) * rr[0] + rr[1]); // TODO
+		srand(seed);
 	}
 	r = rand() % (max + 1);
 	R = (double)r / (double)max;
