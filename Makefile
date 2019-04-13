@@ -1,8 +1,8 @@
 CC = gcc
 LD = gcc
 ERRLVL = -Wall -Wextra -pedantic -Wimplicit-fallthrough=0
-CFLAGS = -std=c99 -g $(ERRLVL)
-LDFLAGS = -static
+CFLAGS = -std=c99 -O2 $(ERRLVL)
+LDFLAGS = -lm
 TARGETS = rect_test
 
 all : $(TARGETS)
@@ -19,4 +19,4 @@ strip : $(TARGET)
 	--remove-section=.note.gnu.build-id --remove-section=.note.ABI-tag $^
 
 clean :
-	rm -rf *.o *.csv $(TARGETS)
+	rm -rf *.o *.csv *.png $(TARGETS)
