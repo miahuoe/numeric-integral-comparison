@@ -1,3 +1,10 @@
+#!/usr/bin/bash
+
+if [ $# -lt 2 ]
+then
+	echo "Usage: $(basename $0) prefix columns..."
+	exit
+fi
 
 generate_gnuplot() {
 	file="/tmp/plot.$$.gnuplot"
@@ -37,3 +44,18 @@ EOF
 
 	echo "$file"
 }
+
+prefix=$1
+columns=${@:2}
+
+i=0
+while test -f "${prefix}_f_$i.csv"
+do
+	csv_file="${prefix}_f_$i.csv"
+	png_file="${prefix}_f_$i.png"
+	gnuplot_file=$(generate_gnuplot $columns)
+	gnuplot -e "csv_file='$csv_file'; png_file='$png_file'" $gnuplot_file
+	rm $gnuplot_file
+	echo "$png_file"
+	(( i = i + 1 ))
+done
