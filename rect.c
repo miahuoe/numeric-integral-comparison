@@ -1,3 +1,11 @@
+/*
+ * An implementation of rectangular methods of numeric integration.
+ * Includes: left edge, middle, right edge.
+ *
+ * Author: Michał Czarnecki <czarnecky@va.pl>
+ * Date: 2019-04-13
+ */
+
 #include "rect.h"
 
 double rect_left(double a, double b, double (*f)(double), unsigned n)

@@ -1,3 +1,10 @@
+/*
+ * An implementation of trapezoid method of numeric integration.
+ *
+ * Author: Michał Czarnecki <czarnecky@va.pl>
+ * Date: 2019-04-13
+ */
+
 #include "trapez.h"
 
 double trapezoid(double a, double b, double (*f)(double), unsigned n)

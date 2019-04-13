@@ -1,3 +1,10 @@
+/*
+ * An implementation of Monte Carlo methods of numeric integration.
+ *
+ * Author: Michał Czarnecki <czarnecky@va.pl>
+ * Date: 2019-04-13
+ */
+
 #include "random.h"
 
 double monte_carlo_column(double a, double b, double (*f)(double), unsigned n, unsigned p)

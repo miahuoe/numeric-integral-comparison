@@ -1,5 +1,12 @@
 #!/usr/bin/bash
 
+# A script generating plots (in PNG format) based on csv files.
+# Creates columns dynamically, according to commandline arguments.
+# It uses a workaround to pass some variables to gnuplot.
+#
+# Author: Michał Czarnecki <czarnecky@va.pl>
+# Date: 2019-04-13
+
 if [ $# -lt 2 ]
 then
 	echo "Usage: $(basename $0) prefix columns..."
@@ -48,6 +55,7 @@ EOF
 prefix=$1
 columns=${@:2}
 
+# TODO: read file list from stdin
 i=0
 while test -f "${prefix}_f_$i.csv"
 do
