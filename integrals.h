@@ -1,6 +1,12 @@
 #ifndef INTEGRALS_H
 #define INTEGRALS_H
 
+#ifndef _DEFAULT_SOURCE
+#define _DEFAULT_SOURCE
+#endif
+
+#include <math.h>
+
 /*
  * Definite integral: from, to, function, and true result
  */
@@ -11,6 +17,11 @@ typedef struct {
 	double y;
 } integral;
 
-double f_0(double);
+#define f_n(N) double f_ ## N (double);
+
+f_n(0)
+f_n(1)
+
+#undef f_n
 
 #endif
