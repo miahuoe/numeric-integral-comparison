@@ -7,7 +7,7 @@ TARGETS = rect_test
 
 all : $(TARGETS)
 
-rect_test : rect_test.o rect.o integrals.o
+rect_test : rect_test.o rect.o integrals.o trapez.o
 	$(LD) $(LDFLAGS) $^ -o $@
 
 %.o : %.c
