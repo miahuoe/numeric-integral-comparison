@@ -10,6 +10,10 @@ all : $(TARGETS)
 rect_test : rect_test.o rect.o integrals.o trapez.o
 	$(LD) $(LDFLAGS) $^ -o $@
 
+plot1 : rect_test
+	./rect_test
+	./generate_gnuplot.sh rect_test left middle right trapez
+
 %.o : %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
