@@ -21,6 +21,8 @@ typedef struct {
 
 f_n(0)
 f_n(1)
+f_n(2)
+f_n(3)
 
 #undef f_n
 
